@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { services } from "@/lib/data";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export default function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    sendGTMEvent({ event: "generate_lead", form_name: "quote_form" });
     setSubmitted(true);
   }
 
