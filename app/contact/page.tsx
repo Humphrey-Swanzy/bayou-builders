@@ -24,7 +24,7 @@ export default function ContactPage() {
           className="object-cover opacity-[0.15]"
         />
         <ContourLines stroke="#ffffff" className="opacity-[0.04]" />
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-32 pt-12 md:pt-14 lg:grid-cols-2">
+        <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-40 pt-12 md:pt-14 lg:grid-cols-2">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-brand">
               Contact
@@ -37,8 +37,8 @@ export default function ContactPage() {
               or skip the form entirely and call us now.
             </p>
             <div className="mt-10 space-y-4">
-
-             <a 
+              
+              <a
                 href={`tel:${company.phone}`}
                 className="group flex items-center gap-4 font-semibold text-white transition hover:text-brand"
               >
@@ -87,8 +87,8 @@ export default function ContactPage() {
       {/* Cream section */}
       <section className="bg-cream">
         <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 pb-20 lg:grid-cols-2">
-          {/* Unified info card */}
-          <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white pt-0 lg:mt-20">
+          {/* Unified info card: second on mobile, left column on desktop */}
+          <div className="order-2 overflow-hidden rounded-2xl border border-gray-200 bg-white pt-0 lg:order-1 lg:mt-20">
             <div className="relative h-56">
               <Image
                 src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=1200&q=80"
@@ -125,7 +125,9 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="flex items-start gap-3 border-t border-gray-100 bg-brand/10 p-6 text-sm">
-              <span className="mt-0.5 text-brand-dark">⚠</span>
+              <span className="mt-0.5 shrink-0 text-brand-dark">
+                <Icon name="alert" className="h-5 w-5" />
+              </span>
               <p className="text-gray-700">
                 <span className="font-semibold text-brand-dark">
                   Storm emergency?
@@ -136,8 +138,8 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Form, overlapping the hero */}
-          <div className="relative z-10 -mt-36 lg:-mt-80">
+          {/* Form column: first on mobile, right column on desktop */}
+          <div className="relative z-10 order-1 -mt-24 lg:order-2 lg:-mt-64">
             <QuoteForm />
 
             <div className="group mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white">
@@ -149,7 +151,7 @@ export default function ContactPage() {
                   <p className="text-xs text-gray-500">{company.address}</p>
                 </div>
                 
-                <a
+                <a  
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                     company.address
                   )}`}

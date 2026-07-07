@@ -142,7 +142,7 @@ export default function AboutPage() {
                 key={member.name}
                 className="group overflow-hidden rounded-xl border border-gray-200 bg-white"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden sm:aspect-square lg:aspect-[4/5]">
                   <Image
                     src={member.image}
                     alt={member.name}

@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { company } from "@/lib/data";
+import Icon from "@/components/Icon";
 
 const navLinks = [
   { href: "/services", label: "Services" },
@@ -9,16 +13,21 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 bg-charcoal">
-      <div className="mx-auto grid max-w-6xl grid-cols-3 items-center px-4 py-5">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:grid lg:grid-cols-3 lg:py-5">
         <Link
           href="/"
-          className="justify-self-start text-lg font-semibold tracking-wide text-white"
+          onClick={() => setOpen(false)}
+          className="text-lg font-semibold tracking-wide text-white lg:justify-self-start"
         >
           BAYOU<span className="text-brand">BUILDERS</span>
         </Link>
-        <nav className="flex items-center justify-center gap-8">
+
+        {/* Desktop nav */}
+        <nav className="hidden items-center justify-center gap-8 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -29,21 +38,15 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <span className="group/cta relative inline-block justify-self-end">
+
+        {/* Desktop phone CTA with marker circle */}
+        <span className="group/cta relative hidden lg:inline-block lg:justify-self-end">
+          
           <a
             href={`tel:${company.phone}`}
             className="relative z-10 inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 group-hover/cta:text-brand"
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="h-4 w-4 transition-transform duration-300 group-hover/cta:rotate-12 group-hover/cta:scale-110"
-              aria-hidden="true"
-            >
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
+            <Icon name="phone" className="h-4 w-4 transition-transform duration-300 group-hover/cta:rotate-12 group-hover/cta:scale-110" />
             {company.phone}
           </a>
           <svg
@@ -64,6 +67,67 @@ export default function Header() {
             />
           </svg>
         </span>
+
+        {/* Mobile: compact call button + hamburger */}
+        <div className="flex items-center gap-3 lg:hidden">
+          
+          <a
+            href={`tel:${company.phone}`}
+            aria-label={`Call ${company.phone}`}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-brand text-brand-text"
+          >
+            <Icon name="phone" className="h-4 w-4" />
+          </a>
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md border border-white/15"
+          >
+            <span
+              className={`h-0.5 w-5 bg-white transition-transform duration-300 ${
+                open ? "translate-y-2 rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-5 bg-white transition-opacity duration-300 ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-5 bg-white transition-transform duration-300 ${
+                open ? "-translate-y-2 -rotate-45" : ""
+              }`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile drawer */}
+      <div
+        className={`overflow-hidden transition-[max-height] duration-300 ease-out lg:hidden ${
+          open ? "max-h-96" : "max-h-0"
+        }`}
+      >
+        <nav className="border-t border-white/10 px-4 py-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="block border-b border-white/5 py-3.5 text-base font-medium text-gray-200 transition hover:text-brand"
+            >
+              {link.label}
+            </Link>
+          ))}
+          
+          <a
+            href={`tel:${company.phone}`}
+            className="mt-4 block rounded-md bg-brand py-3 text-center font-semibold text-brand-text"
+          >
+            Call {company.phone}
+          </a>
+        </nav>
       </div>
     </header>
   );

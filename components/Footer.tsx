@@ -16,9 +16,12 @@ export default function Footer() {
         <div className="mx-auto max-w-6xl px-4 pt-16">
           <div className="flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-12 md:flex-row md:items-center">
             <div>
-              <p className="text-2xl font-semibold text-white">
+              <Link
+                href="/"
+                className="text-2xl font-semibold text-white transition hover:text-gray-300"
+              >
                 BAYOU<span className="text-brand">BUILDERS</span>
-              </p>
+              </Link>
               <p className="mt-2 text-sm text-gray-400">{company.tagline}</p>
             </div>
             <a

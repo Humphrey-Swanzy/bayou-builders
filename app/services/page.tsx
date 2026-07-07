@@ -35,14 +35,15 @@ export default function ServicesPage() {
             and our 2-year workmanship warranty.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {services.map((service) => (
+              
               <a
                 key={service.slug}
                 href={`#${service.slug}`}
-                className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-gray-300 transition hover:border-brand hover:text-brand"
+                className="flex items-center justify-between rounded-full border border-white/20 px-5 py-3 text-sm font-medium text-gray-300 transition hover:border-brand hover:text-brand sm:justify-start sm:gap-2 sm:py-2.5"
               >
-                {service.title} ↓
+                {service.title} <span aria-hidden="true">↓</span>
               </a>
             ))}
           </div>
