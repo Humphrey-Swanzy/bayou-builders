@@ -6,6 +6,7 @@ export type Service = {
   image: string;
   features: string[];
   faq: { q: string; a: string }[];
+  costRange: { min: number; max: number };
 };
 
 export const services: Service[] = [
@@ -13,6 +14,7 @@ export const services: Service[] = [
     slug: "kitchen-remodeling",
     title: "Kitchen Remodeling",
     short: "Full kitchen renovations from design to final fixture.",
+    costRange: { min: 28000, max: 65000 },
     description:
       "We handle complete kitchen transformations across Greater New Orleans, from cabinetry and countertops to plumbing, electrical, and lighting. Most projects complete in 4 to 6 weeks.",
     image:
@@ -44,6 +46,7 @@ export const services: Service[] = [
     slug: "roofing",
     title: "Roofing & Storm Repair",
     short: "Hurricane-rated roofing installs and insurance repair work.",
+    costRange: { min: 12000, max: 32000 },
     description:
       "Louisiana weather is hard on roofs. We install architectural shingle and metal roofing systems rated for high wind, and we work directly with insurers on storm damage claims.",
     image:
@@ -75,6 +78,7 @@ export const services: Service[] = [
     slug: "home-additions",
     title: "Home Additions",
     short: "Extra bedrooms, sunrooms, and second-story additions.",
+    costRange: { min: 65000, max: 160000 },
     description:
       "Growing family or working from home? We design and build additions that match your existing structure, handling permits, foundation, framing, and finishing end to end.",
     image:
@@ -106,6 +110,7 @@ export const services: Service[] = [
     slug: "bathroom-renovation",
     title: "Bathroom Renovation",
     short: "Modern bathrooms built for comfort and resale value.",
+    costRange: { min: 14000, max: 38000 },
     description:
       "From walk-in showers to full primary bath suites, we renovate bathrooms with waterproofing done right the first time. Fixed quotes, no surprises.",
     image:
@@ -134,6 +139,29 @@ export const services: Service[] = [
     ],
   },
 ];
+
+export const estimator = {
+  eyebrow: "Plan Your Budget",
+  heading: "What might your project cost?",
+  intro:
+    "Pick a project type, rough size, and finish level to see a ballpark range based on our recent work across Greater New Orleans.",
+  projectLabel: "Project type",
+  sizeLabel: "Approximate size",
+  finishLabel: "Finish level",
+  resultLabel: "Estimated Range",
+  sizes: [
+    { id: "small", label: "Small", hint: "Compact scope or partial update", multiplier: 0.7 },
+    { id: "medium", label: "Medium", hint: "Typical scope for most homes", multiplier: 1 },
+    { id: "large", label: "Large", hint: "Full-scale or layout changes", multiplier: 1.45 },
+  ],
+  finishes: [
+    { id: "standard", label: "Standard", hint: "Quality builder-grade materials", multiplier: 1 },
+    { id: "premium", label: "Premium", hint: "Custom work and high-end materials", multiplier: 1.35 },
+  ],
+  cta: { label: "Get an Exact Quote", href: "/contact" },
+  disclaimer:
+    "Estimates are indicative only. Every home is different — your fixed written quote comes after a free on-site consultation.",
+};
 
 export const company = {
   name: "Bayou Builders",

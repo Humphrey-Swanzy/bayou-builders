@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { services, company, stats } from "@/lib/data";
+import { services, company, stats, estimator } from "@/lib/data";
 import AudienceTabs from "@/components/AudienceTabs";
+import CostEstimator from "@/components/CostEstimator";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import QuoteForm from "@/components/QuoteForm";
 import ProcessTimeline from "@/components/ProcessTimeline";
@@ -140,6 +141,26 @@ export default function HomePage() {
           </h2>
           <div className="mt-10">
             <AudienceTabs />
+          </div>
+        </div>
+      </section>
+
+      {/* Cost estimator */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-6xl px-4 pb-24">
+          <div className="border-t border-charcoal/10 pt-16">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-brand-dark">
+              {estimator.eyebrow}
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold text-charcoal md:text-4xl">
+              {estimator.heading}
+            </h2>
+            <p className="mt-4 max-w-xl leading-relaxed text-gray-600">
+              {estimator.intro}
+            </p>
+          </div>
+          <div className="mt-10">
+            <CostEstimator />
           </div>
         </div>
       </section>
